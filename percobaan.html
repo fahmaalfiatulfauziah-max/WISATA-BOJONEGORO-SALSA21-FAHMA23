@@ -1,0 +1,1545 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wisata Lokal Bojonegoro — Wayang Batik & Mural Jawa</title>
+<meta name="description" content="Website modern wisata Bojonegoro — video hero, destinasi, galeri, modal detail, dan peta.">
+
+<link rel="icon" href="assets/icon-192.png">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+
+<style>
+/* ================================================= */
+/* GLOBAL VARIABLES & BASE STYLES (WAYANG BATIK) */
+/* ================================================= */
+:root{
+    --bg:#1f0535; /* Warna latar belakang Wayang Batik */
+    --card:#1a052b; /* Warna latar belakang kartu gelap */
+    --text:#fff; /* Teks putih/terang */
+    --muted:#ffcc99; /* Teks pendukung */
+    --accent:#ffd700; /* Warna Emas/Neon */
+    --glass: rgba(255, 215, 0, 0.1);
+}
+
+body{
+    margin:0;
+    font-family:'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+    color:var(--text);
+    /* BACKGROUND BODY WAYANG BATIK (DIJAGA UNTUK TEMA KESELURUHAN) */
+    background: linear-gradient(135deg, #1f0535, #3b0a5b, #a58e03, #d6a100); 
+    background-size: 400% 400%;
+    animation: gradientBG 30s ease infinite; 
+    overflow-x:hidden;
+    position: relative;
+}
+
+@keyframes gradientBG {
+    0% {background-position:0% 50%;}
+    50% {background-position:100% 50%;}
+    100% {background-position:0% 50%;}
+}
+
+/* ================================================= */
+/* WAYANG BATIK OVERLAY */
+/* ================================================= */
+.batik-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.3;
+    overflow: hidden;
+}
+
+.batik-overlay::before {
+    content: '';
+    position: absolute;
+    width: 400%; 
+    height: 400%;
+    top: -150%;
+    left: -150%;
+    background: 
+        repeating-radial-gradient(circle at center, transparent 0, transparent 30px, rgba(255, 215, 0, 0.2) 35px, rgba(255, 215, 0, 0.2) 40px),
+        repeating-linear-gradient(45deg, transparent, transparent 80px, rgba(165, 142, 3, 0.4) 85px, rgba(165, 142, 3, 0.4) 160px);
+    background-size: 160px 160px;
+    animation: moveBatik 90s linear infinite; 
+    transform-origin: 50% 50%;
+}
+
+@keyframes moveBatik {
+    0% {transform: rotate(0deg) scale(1.0);}
+    50% {transform: rotate(180deg) scale(1.1);}
+    100% {transform: rotate(360deg) scale(1.0);}
+}
+
+.wayang-silhouette {
+    position: absolute;
+    width: 350px; 
+    height: 450px;
+    background-image: url('https://i.imgur.com/gT7h41x.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.25; 
+    z-index: 1;
+    pointer-events: none;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    animation: animateWayang 30s ease-in-out infinite alternate;
+}
+
+@keyframes animateWayang {
+    0% {transform: translate(-70%, -70%) rotate(-7deg) scale(1.0); opacity: 0.25;}
+    50% {transform: translate(-30%, -30%) rotate(7deg) scale(1.1); opacity: 0.35;}
+    100% {transform: translate(-70%, -70%) rotate(-7deg) scale(1.0); opacity: 0.25;}
+}
+
+
+/* ================================================= */
+/* NAVBAR (WAYANG BATIK - GELAP NEON) */
+/* ================================================= */
+.nav-modern{
+    position:fixed; top:0; left:0; right:0;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 20px; z-index:9999;
+    background:rgba(25, 5, 43, 0.5); backdrop-filter:blur(10px);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+.nav-modern .logo{
+    font-weight:700; 
+    color:var(--accent);
+    font-size:22px;
+    font-family: 'Cormorant Garamond', serif;
+    text-shadow: 0 0 5px #ff6600;
+}
+.nav-modern a{
+    color:var(--muted);
+    text-decoration:none; 
+    font-weight:600;
+    transition: color 0.3s ease;
+}
+.nav-modern a:hover {
+    color: var(--accent);
+}
+.control-btn{
+    background:var(--glass); 
+    border:1px solid rgba(255, 215, 0, 0.3);
+    padding:8px 10px; 
+    border-radius:8px; 
+    color:var(--accent); 
+    cursor:pointer;
+    backdrop-filter: blur(8px);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+.control-btn:hover {
+    background: rgba(255, 215, 0, 0.1);
+    color: #fff;
+}
+
+
+/* ================================================= */
+/* HERO (MURAL JAWA - TAMPILAN GABUNGAN) */
+/* ================================================= */
+.hero{
+    /* Mengembalikan ke ukuran awal 72vh dan margin 60px */
+    height:72vh; 
+    min-height:420px; 
+    position:relative; 
+    overflow:hidden;
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+    margin-top:60px;
+    
+    /* BACKGROUND IMAGE KHUSUS MURALJAWA.JPG */
+    background: url('muraljawa.jpg') no-repeat center center fixed;
+    background-size: cover;
+    animation: zoomBG 20s ease-in-out infinite alternate; /* Animasi dari kode asli */
+}
+@keyframes zoomBG {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+}
+
+.hero .overlay{
+    /* Overlay dari kode asli, disesuaikan agar teks neon tetap menonjol */
+    position:absolute; inset:0; background:rgba(0,0,0,0.4); z-index:1; 
+}
+/* Menghapus elemen Wayang Batik dari HERO */
+#particles-js { display: block; position:absolute; width:100%; height:100%; top:0; left:0; z-index:0; } /* Jika Anda menggunakan particles-js */
+#particles { display: none; } /* Matikan partikel Wayang Batik di sini */
+.wave-container { display: none; } /* Matikan wave Wayang Batik di sini */
+.wayang-silhouette { display: none; } /* Wayang Silhouette tetap di body */
+
+.hero .content{
+    position:relative; z-index:2; text-align:center; padding:20px;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
+}
+@keyframes fadeSlideUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Judul menggunakan style Neon Glow */
+.hero .content h1 { 
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem; 
+    text-transform: uppercase;
+    text-shadow:
+        0 0 8px #fff8dc,
+        0 0 15px #ffd700,
+        0 0 30px #ff9900,
+        0 0 50px #ff6600;
+    animation: neonGlow 3s ease-in-out infinite alternate, fadeSlideUp 1.2s ease-out forwards; 
+    animation-delay: 0.3s; 
+    opacity: 0; 
+}
+
+/* Deskripsi P menggunakan warna muted Wayang Batik */
+.hero .content p { 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    color: var(--muted);
+    animation: fadeSlideUp 1.2s ease-out forwards; 
+    animation-delay: 0.6s; 
+    opacity:0.9; 
+}
+
+/* Tombol menggunakan warna accent Wayang Batik */
+.hero .content a { 
+    background: var(--accent); 
+    color: var(--bg); /* Teks gelap di tombol emas */
+    font-weight: 700;
+    animation: fadeSlideUp 1.2s ease-out forwards; 
+    animation-delay: 0.9s; 
+    opacity:0; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hero .content a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+/* Kotak pencarian menggunakan gaya Wayang Batik */
+#searchBox{
+    padding:14px 20px; 
+    border-radius:12px; 
+    border:1px solid rgba(255, 215, 0, 0.4);
+    width:350px; 
+    max-width:90%; 
+    font-size:1.1rem; 
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    animation: fadeSlideUp 1.2s ease-out forwards; 
+    animation-delay: 1.2s; 
+    opacity:0; 
+}
+#searchBox:focus{
+    transform:scale(1.02);
+    box-shadow:0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+/* CARD MODERN (Wayang Batik) */
+.card-modern{
+    background:var(--card);
+    border-radius:14px; overflow:hidden;
+    border:1px solid rgba(255, 215, 0, 0.1);
+    box-shadow:0 4px 12px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-modern:hover{
+    transform:translateY(-8px) scale(1.03);
+    box-shadow:0 15px 35px rgba(0,0,0,0.4), 0 0 10px var(--accent);
+}
+.card-modern img{width:100%; height:170px; object-fit:cover;}
+
+.btn-gmaps{
+    background:var(--accent); 
+    color:var(--bg); 
+    font-weight:700; 
+    border-radius:8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+.btn-gmaps:hover{
+    background:#e0c100; 
+    transform:scale(1.03);
+}
+
+/* Keyframes untuk Neon Glow */
+@keyframes neonGlow {
+    0% {text-shadow:0 0 8px #fff8dc,0 0 15px #ffd700,0 0 30px #ff9900,0 0 50px #ff6600;}
+    50% {text-shadow:0 0 10px #ff6600,0 0 20px #ff9900,0 0 40px #ffd700,0 0 60px #fff8dc;}
+    100% {text-shadow:0 0 8px #fff8dc,0 0 15px #ffd700,0 0 30px #ff9900,0 0 50px #ff6600;}
+}
+
+</style>
+</head>
+<body data-theme="dark">
+
+<div class="batik-overlay"></div> 
+<div class="wayang-silhouette"></div>
+
+<nav class="nav-modern">
+    <div class="logo">🎭Wayang Batik</div>
+    <div class="flex gap-6">
+        <a href="#home">Beranda</a>
+        <a href="#profil">Profil</a>
+        <a href="#wisata lokal bojonegoro">Destinasi</a>
+        <a href="#Berita">Berita</a>
+        <a href="#map">Peta</a>
+        <a href="#kontak">Kontak</a>
+    </div>
+    <div class="flex gap-2">
+        <div class="relative">
+            <button id="searchIcon" class="control-btn">🔍</button>
+            <input id="navbarSearch" type="text" placeholder="Cari destinasi..." class="hidden absolute right-0 top-full mt-2 w-64 px-3 py-2 border border-gray-300 rounded-lg shadow-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <button id="themeToggle" class="control-btn">🌙</button>
+    </div>
+</nav>
+
+<section id="home" class="hero">
+    <div id="particles-js"></div> 
+    
+    <div class="overlay"></div>
+    <div class="content">
+        <h1>Explore Wisata Lokal Bojonegoro</h1>
+        <p>Temukan destinasi alam, spot foto, dan pengalaman tak terlupakan.</p>
+        <a href="#destinasi" class="inline-block mt-3 px-6 py-3 rounded-lg font-bold">Mulai Jelajah</a>
+        <div class="mt-5">
+            <input id="searchBox" type="text" placeholder="Telusuri tempat...">
+        </div>
+    </div>
+</section>
+
+<script>
+// Partikel Wayang Batik (Meskipun display:none di Hero, partikel tetap ada di body)
+const particlesContainer = document.getElementById('particles');
+if (particlesContainer) {
+    const numParticles = 80;
+    const particles = [];
+
+    for(let i=0;i<numParticles;i++){
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        particle.style.width = particle.style.height = `${Math.random()*6 + 2}px`;
+        particle.style.position = 'absolute';
+        particle.style.background = 'rgba(255,215,0,0.8)';
+        particle.style.borderRadius = '50%';
+        particle.style.left = `${Math.random()*window.innerWidth}px`;
+        particle.style.top = `${Math.random()*window.innerHeight}px`;
+        particle.speedX = (Math.random()-0.5)/2;
+        particle.speedY = (Math.random()-0.5)/2;
+        particlesContainer.appendChild(particle);
+        particles.push(particle);
+    }
+
+    document.addEventListener('mousemove', e => {
+        particles.forEach(p=>{
+            const dx = e.clientX - (p.offsetLeft + p.offsetWidth/2);
+            const dy = e.clientY - (p.offsetTop + p.offsetHeight/2);
+            p.speedX += dx*0.0005;
+            p.speedY += dy*0.0005;
+        });
+    });
+
+    function animateParticles(){
+        particles.forEach(p=>{
+            let x = p.offsetLeft + p.speedX*10;
+            let y = p.offsetTop + p.speedY*10;
+            if(x < 0) x = window.innerWidth;
+            if(x > window.innerWidth) x = 0;
+            if(y < 0) y = window.innerHeight;
+            if(y > window.innerHeight) y = 0;
+            p.style.left = x + 'px';
+            p.style.top = y + 'px';
+            p.speedX *= 0.95;
+            p.speedY *= 0.95;
+        });
+        requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+}
+
+// Fungsionalitas Tombol Navigasi dan Theme
+document.getElementById('searchIcon').addEventListener('click', function() {
+    const navbarSearch = document.getElementById('navbarSearch');
+    navbarSearch.classList.toggle('hidden');
+});
+
+document.getElementById('themeToggle').addEventListener('click', function() {
+    if (this.textContent.includes('🌙')) {
+        this.textContent = '☀️';
+        document.body.setAttribute('data-theme', 'light');
+    } else {
+        this.textContent = '🌙';
+        document.body.setAttribute('data-theme', 'dark');
+    }
+});
+</script>
+</body>
+</html>
+
+<!-- PROFIL -->
+<section id="profil" class="container my-5">
+  <h2 class="fw-bold mb-4 text-dark" style="font-size: 32px; text-align:center;">
+    Profil Kabupaten Bojonegoro
+  </h2>
+
+  <div class="row g-4">
+
+    <!-- Kolom Sejarah -->
+    <div class="col-md-4 mb-4">
+      <div class="card-led hover-led">
+        <img src="bojonegoro.jpg" alt="Sejarah Bojonegoro" class="card-img-led">
+        <div class="card-body-led">
+          <h5 class="led-text"><strong>Sejarah Bojonegoro</strong></h5>
+          <p style="text-align:justify;">
+            Masa kehidupan sejarah Indonesia Kuno ditandai oleh pengaruh kuat kebudayaan Hindu yang datang dari India sejak Abad I. 
+            Hingga abad ke-16, Bojonegoro termasuk wilayah kekuasaan Majapahit. Setelah berdirinya Kesultanan Demak, Bojonegoro menjadi wilayah Kerajaan Demak.
+            <br><br>
+            Peralihan kekuasaan membawa Bojonegoro masuk dalam wilayah Kerajaan Pajang (1586) dan Mataram (1587).
+            Pada 20 Oktober 1677, status Jipang diubah menjadi kabupaten dengan Mas Tumapel sebagai Bupati I.
+            <br><br>
+            Tahun 1725, pusat pemerintahan Kabupaten Jipang dipindahkan ke Rajekwesi, sekitar 10 km selatan kota Bojonegoro.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kolom Video -->
+    <div class="col-md-8 mb-4">
+      <div class="card-led hover-led">
+        <h5 class="text-dark mb-3 led-text"><strong>Video Sejarah Kabupaten Bojonegoro</strong></h5>
+        <div class="video-container card-led-video">
+          <iframe src="https://www.youtube.com/embed/mJ0D1CweW3g?si=f-l58Kn45nU6MFY1"
+                  title="Sejarah Bojonegoro" frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+/* --- Kartu LED --- */
+.card-led {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 2px; /* space for glowing border */
+  background: linear-gradient(135deg, #ff6ec7, #6ec1ff);
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  transition: transform 0.5s ease;
+}
+
+/* Border LED bergerak */
+.card-led::before {
+  content: '';
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff, #00ffff);
+  background-size: 300% 300%;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  z-index:1;
+  opacity:0;
+  transition: opacity 0.5s ease;
+  animation: ledMove 4s linear infinite;
+}
+
+.hover-led:hover::before {
+  opacity:1;
+}
+
+/* Animasi LED bergerak */
+@keyframes ledMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Card Body dan Image */
+.card-body-led {
+  position: relative;
+  z-index:2;
+  padding: 20px;
+  background: rgba(0,0,0,0.1); /* semi-transparent untuk glow terlihat */
+  border-radius: 18px;
+}
+
+.card-img-led {
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  display:block;
+  border-radius: 18px;
+}
+
+/* Neon Text Glow */
+.led-text {
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+  transition: text-shadow 0.3s ease;
+}
+
+.hover-led:hover .led-text {
+  text-shadow: 0 0 5px #00ffff, 0 0 15px #00ffff, 0 0 30px #00ffff, 0 0 60px #00ffff;
+}
+
+/* Video Container */
+.card-led-video {
+  padding-bottom: 56.25%;
+  height:0;
+  overflow:hidden;
+  border-radius: 18px;
+}
+
+.card-led-video iframe {
+  position:absolute;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  border-radius:18px;
+}
+</style>
+
+
+
+
+  <!-- Peta dan Tabel Batas Wilayah Bojonegoro dengan Neon Magenta -->
+<section id="peta-wilayah" style="padding: 20px; max-width: 900px; margin: auto;">
+  <h5 style="text-align:center; margin-bottom:20px; color:black;"><strong>Peta Wilayah Kabupaten Bojonegoro</strong></h5>
+
+  <!-- Kartu Peta -->
+  <div class="card-modern neon-card" style="margin-bottom: 20px;">
+    <div class="peta-container" style="width:100%; text-align: center; padding: 20px;">
+      <img src="peta bojonegoro.png" alt="Peta Wilayah Bojonegoro" style="width:100%; max-width: 600px; height:auto; display:block; margin: auto;">
+    </div>
+    <div class="p-3" style="padding: 15px; text-align: center;">
+      <p>
+        Kabupaten Bojonegoro adalah sebuah kabupaten di Provinsi Jawa Timur, Indonesia.
+        Secara geografis, Kabupaten Bojonegoro terletak pada posisi 6°59′ hingga 7°37′ Lintang Selatan dan 111°25′ hingga 112°09′ Bujur Timur.
+      </p>
+    </div>
+  </div>
+
+  <section id="wilayah-bersanding">
+    <h5 style="text-align:center; margin-bottom:20px; color:black;"><strong>Informasi Wilayah Kabupaten Bojonegoro</strong></h5>
+
+    <div class="flex-container">
+      <!-- Kolom Kiri: Batas Wilayah -->
+      <div class="batas-wilayah neon-card">
+        <h2 class="fw-bold mb-3 neon-subtitle">Batas Wilayah</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Berbatasan Dengan Kabupaten</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Utara: Tuban</td></tr>
+            <tr><td>2</td><td>Timur: Lamongan</td></tr>
+            <tr><td>3</td><td>Selatan: Madiun, Nganjuk, Jombang</td></tr>
+            <tr><td>4</td><td>Barat: Ngawi & Blora (Jateng)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Kolom Kanan: Administrasi Wilayah -->
+      <div class="admin-wilayah neon-card">
+        <h2 class="fw-bold mb-3 neon-subtitle">Administrasi Wilayah Kabupaten Bojonegoro</h2>
+        <p>
+          Secara administratif, Kabupaten Bojonegoro terbagi menjadi <strong>28 Kecamatan</strong>.
+          Total wilayah tersebut mencakup <strong>11 Kelurahan</strong> dan <strong>419 Desa</strong>.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Kecamatan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Baureno</td></tr>
+            <tr><td>2</td><td>Bojonegoro (Pusat)</td></tr>
+            <tr><td>3</td><td>Bubulan</td></tr>
+            <tr><td>4</td><td>Dander</td></tr>
+            <tr><td>5</td><td>Gondang</td></tr>
+            <tr><td>6</td><td>Kedewan</td></tr>
+            <tr><td>7</td><td>Kalitidu</td></tr>
+            <tr><td>8</td><td>Kapas</td></tr>
+            <tr><td>9</td><td>Kasiman</td></tr>
+            <tr><td>10</td><td>Kedungadem</td></tr>
+            <tr><td>11</td><td>Kepohbaru</td></tr>
+            <tr><td>12</td><td>Kanor</td></tr>
+            <tr><td>13</td><td>Malo</td></tr>
+            <tr><td>14</td><td>Margomulyo</td></tr>
+            <tr><td>15</td><td>Ngambon</td></tr>
+            <tr><td>16</td><td>Ngasem</td></tr>
+            <tr><td>17</td><td>Ngraho</td></tr>
+            <tr><td>18</td><td>Padangan</td></tr>
+            <tr><td>19</td><td>Purwosari</td></tr>
+            <tr><td>20</td><td>Sekar</td></tr>
+            <tr><td>21</td><td>Sugihwaras</td></tr>
+            <tr><td>22</td><td>Sukosewu</td></tr>
+            <tr><td>23</td><td>Sumberrejo</td></tr>
+            <tr><td>24</td><td>Tambakrejo</td></tr>
+            <tr><td>25</td><td>Temayang</td></tr>
+            <tr><td>26</td><td>Trucuk</td></tr>
+            <tr><td>27</td><td>Sumberrejo</td></tr>
+            <tr><td>28</td><td>Purwosari</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</section>
+
+<style>
+/* Global Neon Card - Magenta Theme */
+.neon-card {
+  position: relative;
+  border-radius: 15px;
+  padding: 20px;
+  color: #ff33ff;
+  overflow: hidden;
+  background: linear-gradient(135deg, #330033, #660066, #cc33cc);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Hover Glow Effect */
+.neon-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 40px rgba(255,51,255,0.7), 0 0 60px rgba(204,51,204,0.6);
+}
+
+/* Neon Grid Overlay */
+.neon-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: linear-gradient(rgba(255,51,255,0.15) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,51,255,0.15) 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: moveGrid 15s linear infinite;
+  pointer-events: none;
+}
+
+/* Grid Animation */
+@keyframes moveGrid {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 30px 30px, 30px 30px; }
+}
+
+/* Flex layout */
+.flex-container {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+/* Table Neon Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid rgba(255,51,255,0.4);
+}
+
+th, td {
+  border: 1px solid rgba(255,51,255,0.4);
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: rgba(51,0,51,0.3);
+  text-shadow: 0 0 4px #ff33ff;
+}
+
+td {
+  text-shadow: 0 0 2px #ff99ff;
+}
+
+/* Neon subtitle for h2 */
+.neon-subtitle {
+  color: #ff33ff;
+  text-shadow: 0 0 8px #ff33ff, 0 0 20px #cc33cc;
+}
+
+/* Responsive */
+@media (max-width:768px){
+  .flex-container {
+    flex-direction: column;
+  }
+  .batas-wilayah, .admin-wilayah, .neon-card {
+    margin-bottom: 20px;
+  }
+}
+
+/* Header Font - Hitam */
+h5 {
+  font-family: 'Orbitron', sans-serif;
+  color: black;
+  text-shadow: none;
+}
+</style>
+
+
+
+<!-- Section: Bupati & Wakil Bupati Futuristik + Partikel Neon -->
+<section id="pimpinan" style="padding:40px 20px; max-width:900px; margin:auto; position:relative; overflow:hidden; border-radius:20px;">
+  <!-- Canvas Partikel Neon -->
+  <canvas id="pimpinan-particles" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:0;"></canvas>
+
+  <h5 style="text-align:center; margin-bottom:40px; font-family:'Orbitron', sans-serif; color:#0ff; text-shadow:0 0 10px #0ff, 0 0 20px #66f; position:relative; z-index:1;">
+    <strong>Pimpinan Kabupaten Bojonegoro</strong>
+  </h5>
+
+  <div class="card-container" style="display:flex; flex-wrap:wrap; justify-content:center; gap:30px; position:relative; z-index:1;">
+
+    <!-- Bupati -->
+    <div class="card-futuristic batik-card interactive-card" style="flex:1 1 300px; max-width:350px;">
+      <img src="Bupati Bojonegoro.jpg" alt="Bupati Bojonegoro"
+           style="width:180px; height:180px; object-fit:cover; border-radius:50%; display:block; margin:0 auto 15px; border:2px solid #0ff; box-shadow:0 0 15px #0ff;">
+      <div class="p-2">
+        <h5 style="text-align:center; margin-bottom:10px; color:#fff; text-shadow:0 0 8px #0ff;"><strong>Bupati Bojonegoro</strong></h5>
+        <h5 style="text-align:center; margin-bottom:15px; color:#66f; text-shadow:0 0 8px #66f;">H. Setyo Wahono</h5>
+        <p style="font-size:14px; color:#fff; line-height:1.5;">
+          <strong>Nama Lengkap:</strong> H. Setyo Wahono<br>
+          <strong>Jabatan:</strong> Bupati Bojonegoro<br>
+          <strong>Periode:</strong> 2025–2030<br>
+          <strong>Pelantikan:</strong> 21 Februari 2025 di Istana Negara<br>
+          <strong>Rekan Kerja:</strong> Wakil Bupati Nurul Azizah
+        </p>
+      </div>
+    </div>
+
+    <!-- Wakil Bupati -->
+    <div class="card-futuristic batik-card-alt interactive-card" style="flex:1 1 300px; max-width:350px;">
+      <img src="PROFIL-SOSOK-Nurul-Azizah-resmi-dilantik-sebagai-wakil-Bupati-Bojonegoro-2025-2030.webp" alt="Wakil Bupati Bojonegoro"
+           style="width:180px; height:180px; object-fit:cover; border-radius:50%; display:block; margin:0 auto 15px; border:2px solid #66f; box-shadow:0 0 15px #66f;">
+      <div class="p-2">
+        <h5 style="text-align:center; margin-bottom:10px; color:#fff; text-shadow:0 0 8px #0ff;"><strong>Wakil Bupati Bojonegoro</strong></h5>
+        <h5 style="text-align:center; margin-bottom:15px; color:#66f; text-shadow:0 0 8px #66f;">Nurul Azizah</h5>
+        <p style="font-size:14px; color:#fff; line-height:1.5;">
+          <strong>Nama Lengkap:</strong> Nurul Azizah<br>
+          <strong>Jabatan:</strong> Wakil Bupati Bojonegoro<br>
+          <strong>Periode:</strong> 2025–2030<br>
+          <strong>Pelantikan:</strong> 21 Februari 2025 di Istana Negara<br>
+          <strong>Rekan Kerja:</strong> Bupati Setyo Wahono
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+/* Kartu Futuristik + Batik */
+.card-futuristic, .card-futuristic img {
+  transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
+}
+
+.interactive-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0,255,255,0.7), 0 0 50px rgba(102,102,255,0.6);
+}
+
+/* Batik halus */
+.batik-card, .batik-card-alt {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  padding: 25px;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.batik-card::before, .batik-card-alt::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url('batik-pattern.png'); /* batik transparan */
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  opacity: 0.1;
+  animation: rotateBatik 25s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotateBatik {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.card-futuristic h5, .card-futuristic p {
+  position: relative;
+  z-index: 1;
+  transition: text-shadow 0.4s;
+}
+
+.card-futuristic:hover h5 {
+  text-shadow: 0 0 15px #0ff, 0 0 25px #66f;
+}
+
+/* Alternatif batik warna */
+.batik-card-alt {
+  background: linear-gradient(135deg, #203a43, #2c5364, #0f2027);
+}
+</style>
+
+<script>
+// Canvas Partikel Neon (Tetap hidup tapi tidak tergantung kursor)
+const canvas = document.getElementById('pimpinan-particles');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const particles = [];
+const particleCount = 120;
+
+for (let i = 0; i < particleCount; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: Math.random() * 3 + 1,
+    speedX: (Math.random() - 0.5) * 0.7,
+    speedY: (Math.random() - 0.5) * 0.7,
+    color: `rgba(${Math.floor(Math.random() * 100 + 155)},${Math.floor(Math.random() * 100 + 155)},255,${Math.random()})`
+  });
+}
+
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fillStyle = p.color;
+    ctx.fill();
+    p.x += p.speedX;
+    p.y += p.speedY;
+    if (p.x < 0) p.x = canvas.width;
+    if (p.x > canvas.width) p.x = 0;
+    if (p.y < 0) p.y = canvas.height;
+    if (p.y > canvas.height) p.y = 0;
+  });
+  requestAnimationFrame(animateParticles);
+}
+
+animateParticles();
+
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+</script>
+
+
+  </div>
+
+  <style>
+    /* Responsif untuk card container */
+    @media (max-width:768px){
+      .card-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .card-modern {
+        max-width:90%;
+      }
+
+      .card-modern img {
+        width:150px;
+        height:150px;
+      }
+    }
+  </style>
+
+</section>
+
+
+
+<style>
+    /* 1. ANIMASI LATAR BELAKANG GLOBAL (WOW EFFECT) */
+    .animated-background {
+        background: linear-gradient(135deg, #f7f9fb, #eef1f6, #f7f9fb, #eef1f6);
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* 2. Styling Utama Kartu (Mendukung Efek Neon Kuat) */
+    .card-feature {
+        border-radius: 15px;
+        overflow: hidden;
+        background: #ffffff; /* Putih bersih */
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative; /* Untuk z-index saat hover */
+    }
+
+    /* Efek Hover: Lift dan Neon Glow KUAT */
+    .card-feature:hover {
+        transform: translateY(-8px) scale(1.02);
+        z-index: 10;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Shadow utama */
+    }
+
+    /* Efek Neon Glow pada Kartu Saat Hover */
+    .neon-red:hover { box-shadow: 0 0 15px 5px #ff6666, 0 0 30px 10px rgba(255, 77, 77, 0.7); }
+    .neon-blue:hover { box-shadow: 0 0 15px 5px #66b3ff, 0 0 30px 10px rgba(77, 148, 255, 0.7); }
+    .neon-green:hover { box-shadow: 0 0 15px 5px #66ff99, 0 0 30px 10px rgba(77, 255, 136, 0.7); }
+    .neon-purple:hover { box-shadow: 0 0 15px 5px #cc66ff, 0 0 30px 10px rgba(184, 77, 255, 0.7); }
+    .neon-orange:hover { box-shadow: 0 0 15px 5px #ffb366, 0 0 30px 10px rgba(255, 148, 77, 0.7); }
+    .neon-pink:hover { box-shadow: 0 0 15px 5px #ff66b3, 0 0 30px 10px rgba(255, 77, 166, 0.7); }
+
+    /* Styling Gambar */
+    .card-img-top {
+        width: 100%;
+        height: 220px; /* Ukuran gambar sedikit lebih tinggi */
+        object-fit: cover;
+        border-radius: 15px 15px 0 0;
+        transition: all 0.4s ease-in-out;
+        display: block;
+    }
+    
+    /* Gambar lebih cerah saat hover */
+    .card-feature:hover .card-img-top {
+        filter: brightness(1.1);
+        transform: scale(1.01);
+    }
+
+    /* Styling Konten */
+    .card-content {
+        padding: 25px; /* Padding sedikit lebih besar */
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-title-new {
+        font-size: 24px; /* Judul lebih besar */
+        font-weight: 900;
+        color: #2c3e50;
+        margin-bottom: 10px;
+    }
+
+    .card-text-new {
+        font-size: 16px;
+        line-height: 1.5;
+        color: #7f8c8d;
+        flex-grow: 1;
+        margin-bottom: 25px; /* Margin bawah lebih besar */
+    }
+    
+    /* Styling Tombol */
+    .btn-gmaps-neon {
+        border-radius: 50px;
+        padding: 14px 25px; /* Tombol lebih besar */
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease-in-out;
+        border: none;
+        text-decoration: none;
+        color: white;
+    }
+
+    /* Efek Neon Hover pada Tombol (Lebih Ditekan) */
+    .neon-red .btn-gmaps-neon:hover {
+        background: #c0392b;
+        box-shadow: 0 0 10px 3px #ff4d4d, 0 0 20px 5px #ff6666;
+        transform: scale(1.05);
+    }
+    .neon-blue .btn-gmaps-neon:hover {
+        background: #2980b9;
+        box-shadow: 0 0 10px 3px #4d94ff, 0 0 20px 5px #66b3ff;
+        transform: scale(1.05);
+    }
+    .neon-green .btn-gmaps-neon:hover {
+        background: #27ae60;
+        box-shadow: 0 0 10px 3px #4dff88, 0 0 20px 5px #66ff99;
+        transform: scale(1.05);
+    }
+    .neon-purple .btn-gmaps-neon:hover {
+        background: #8e44ad;
+        box-shadow: 0 0 10px 3px #b84dff, 0 0 20px 5px #cc66ff;
+        transform: scale(1.05);
+    }
+    .neon-orange .btn-gmaps-neon:hover {
+        background: #d35400;
+        box-shadow: 0 0 10px 3px #ff944d, 0 0 20px 5px #ffb366;
+        transform: scale(1.05);
+    }
+    .neon-pink .btn-gmaps-neon:hover {
+        background: #e95995;
+        box-shadow: 0 0 10px 3px #ff4da6, 0 0 20px 5px #ff66b3;
+        transform: scale(1.05);
+    }
+    
+    /* Warna Tombol Default */
+    .neon-red .btn-gmaps-neon { background: #e74c3c; }
+    .neon-blue .btn-gmaps-neon { background: #3498db; }
+    .neon-green .btn-gmaps-neon { background: #2ecc71; }
+    .neon-purple .btn-gmaps-neon { background: #9b59b6; }
+    .neon-orange .btn-gmaps-neon { background: #e67e22; }
+    .neon-pink .btn-gmaps-neon { background: #ff76b1; }
+    
+</style>
+
+<div class="animated-background">
+    <section id="wisata-bojonegoro-redesign" class="container">
+        <h2 class="fw-bold mb-3 text-center" style="font-size: 38px; color: #2c3e50;">✨ Jelajahi Pesona Bojonegoro ✨</h2>
+        <p class="text-muted mb-5 text-center" style="font-size: 18px;">
+            Enam destinasi wajib kunjung dengan desain kartu yang modern dan efek visual yang memukau.
+        </p>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card-feature neon-red">
+                    <img src="kayangan api.jpg" class="card-img-top" alt="Khayangan Api">
+                    <div class="card-content">
+                        <h5 class="card-title-new">Khayangan Api</h5>
+                        <p class="card-text-new">Fenomena alam berupa **api abadi** yang muncul dari rekahan tanah akibat gas alam. Tempat bersejarah dan mistis yang sakral.</p>
+                        <a target="_blank" href="https://www.google.com/maps/search/Khayangan+Api+Bojonegoro" class="btn-gmaps-neon w-100">Lihat di Google Maps</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card-feature neon-blue">
+                    <img src="wana wisata dander1.jpg" class="card-img-top" alt="Wana Wisata Dander">
+                    <div class="card-content">
+                        <h5 class="card-title-new">Wana Wisata Dander</h5>
+                        <p class="card-text-new">Tempat rekreasi keluarga dengan suasana **hutan jati yang asri**, dilengkapi kolam renang dan fasilitas bermain. Cocok untuk bersantai.</p>
+                        <a target="_blank" href="https://www.google.com/maps/search/Wana+Wisata+Dander+Bojonegoro" class="btn-gmaps-neon w-100">Lihat di Google Maps</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card-feature neon-green">
+                    <img src="Bendung-Gerak.jpg" class="card-img-top" alt="Bendung Gerak">
+                    <div class="card-content">
+                        <h5 class="card-title-new">Bendungan Gerak</h5>
+                        <p class="card-text-new">Bendungan modern di aliran Sungai Bengawan Solo, terkenal sebagai **spot terbaik untuk menikmati sunset** dengan panorama sungai yang luas.</p>
+                        <a target="_blank" href="https://www.google.com/maps/search/Bendung+Gerak+Bojonegoro" class="btn-gmaps-neon w-100">Lihat di Google Maps</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card-feature neon-purple">
+                    <img src="teksas-wonocolo.jpg" class="card-img-top" alt="Wonocolo">
+                    <div class="card-content">
+                        <h5 class="card-title-new">Wonocolo "Texas Indonesia"</h5>
+                        <p class="card-text-new">Area **cagar alam geologi** dengan sumur minyak tradisional yang dikelola secara klasik. Menyajikan warisan geologi dan budaya unik.</p>
+                        <a target="_blank" href="https://www.google.com/maps/place/Wonocolo,+Kedewan,+Bojonegoro+Regency,+East+Java/@-7.0512546,111.6429219,14z/data=!3m1!4b1!4m6!3m5!1s0x2e776fd851704a57:0x51617d4b9ea3bdfe!8m2!3d-7.0517151!4d111.6630914!16s%2Fg%2F11f0k_1dsn?entry=ttu&g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D" class="btn-gmaps-neon w-100">Lihat di Google Maps</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card-feature neon-orange">
+                    <img src="groggg-1879933358.webp" class="card-img-top" alt="Growgoland Bojonegoro">
+                    <div class="card-content">
+                        <h5 class="card-title-new">Growgoland Waterfun</h5>
+                        <p class="card-text-new">Wisata air yang populer, dikenal karena kolamnya yang bersih dan **airnya yang jernih**. Cocok untuk liburan keluarga dan anak-anak.</p>
+                        <a target="_blank" href="https://www.google.com/maps/place/GROWGOLAND+%22Grogolan%22+Waterfun/@-7.2468232,111.8158932,17z/data=!3m1!4b1!4m6!3m5!1s0x2e79d53e3a55054d:0xf70a224facf71bec!8m2!3d-7.2468232!4d111.8184681!16s%2Fg%2F11gw2btfyd?entry=ttu&g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D" class="btn-gmaps-neon w-100">Lihat di Google Maps</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card-feature neon-pink">
+                    <img src="kebun belimbing.jpg" class="card-img-top" alt="Kebun belimbing">
+                    <div class="card-content">
+                        <h5 class="card-title-new">Agrowisata Kebun Belimbing</h5>
+                        <p class="card-text-new">Agrowisata dengan hamparan kebun **belimbing** yang luas di Ngringinrejo. Pengunjung bisa memetik buah segar langsung dari pohonnya.</p>
+                        <a target="_blank" href="https://www.google.com/maps/place/Agrowisata+Kebun+Belimbing+Ngringinrejo/@-7.1280851,111.825292,17z/data=!3m1!4b1!4m6!3m5!1s0x2e7778e90c4f032f:0x129b98aefc5b6c43!8m2!3d-7.1280851!4d111.8278669!16s%2Fg%2F11b7018lr1?entry=ttu&g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D" class="btn-gmaps-neon w-100">Lihat di Google Maps</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+  .news-card {
+    border-radius: 20px;
+    overflow: visible;
+    background: #fff; /* tetap putih */
+    padding: 50px 20px 20px 20px;
+    position: relative;
+    text-align: center;
+    transition: all 0.3s ease;
+    transform: rotate(var(--rotate, 0deg));
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+
+  /* Hover dengan neon gradien berbeda */
+  .news-card.neon-red:hover {
+    box-shadow: 0 0 10px #ff4d4d, 0 0 20px #ff6666, 0 0 40px #ff9999;
+  }
+
+  .news-card.neon-blue:hover {
+    box-shadow: 0 0 10px #4d94ff, 0 0 20px #66b3ff, 0 0 40px #99ccff;
+  }
+
+  .news-card.neon-green:hover {
+    box-shadow: 0 0 10px #4dff88, 0 0 20px #66ff99, 0 0 40px #99ffb3;
+  }
+
+  .news-card.neon-purple:hover {
+    box-shadow: 0 0 10px #b84dff, 0 0 20px #cc66ff, 0 0 40px #d999ff;
+  }
+
+  .news-card.neon-orange:hover {
+    box-shadow: 0 0 10px #ff944d, 0 0 20px #ffb366, 0 0 40px #ffcc99;
+  }
+
+  .news-card.neon-pink:hover {
+    box-shadow: 0 0 10px #ff4da6, 0 0 20px #ff66b3, 0 0 40px #ff99cc;
+  }
+
+  .news-card:hover {
+    transform: translateY(-10px) rotate(var(--rotate, 0deg));
+  }
+
+  .news-img-container {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto -50px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #f39c12;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+
+  .news-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .news-img-container:hover img {
+    transform: scale(1.1) rotate(-5deg);
+  }
+
+  .news-content {
+    padding-top: 60px;
+  }
+
+  .news-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .news-btn {
+    background: #e74c3c;
+    color: white;
+    border-radius: 30px;
+    padding: 8px 18px;
+    display: inline-block;
+    transition: all 0.3s;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .news-btn:hover {
+    background: #c0392b;
+    transform: scale(1.05);
+  }
+
+  /* Elemen magis bergerak */
+  .magical-element {
+    position: absolute;
+    font-size: 18px;
+    opacity: 0.5;
+    pointer-events: none;
+    animation: floatMove 5s ease-in-out infinite;
+  }
+
+  .leaf { color: #2ecc71; }
+  .bird { color: #3498db; }
+  .cloud { color: #bdc3c7; }
+
+  @keyframes floatMove {
+    0% { transform: translate(0, 0) rotate(0deg);}
+    50% { transform: translate(10px, -15px) rotate(10deg);}
+    100% { transform: translate(0, 0) rotate(0deg);}
+  }
+</style>
+
+<section id="berita-wisata" class="container my-5">
+  <h2 class="fw-bold mb-3" style="font-size: 32px;">Berita Wisata Lokal Kabupaten Bojonegoro</h2>
+  <p class="text-muted mb-4">
+    Pilihan berita wisata lokal terbaik yang sedang ramai diperbincangkan di Bojonegoro.
+    Setiap berita dilengkapi gambar, ringkasan, dan link menuju sumber resmi.
+  </p>
+
+  <div class="row g-4">
+
+    <!-- BERITA 1: merah -->
+    <div class="col-md-4">
+      <div class="news-card neon-red">
+        <div class="news-img-container">
+          <img src="atas angin.jpeg" alt="Kayangan Api">
+        </div>
+        <div class="news-content">
+          <h5 class="news-title">Bumi Atas Angin Juga Ramai Dikunjungi Wisatawan</h5>
+          <p> Bojonegoro - Satu lagi wisata Bojonegoro yang banyak dikunjungi  wisatawan pada libur Tahun Baru 2020 yakni Wisata Bumi Atas Angin di Desa Deling, Kecamatan Sekar</p>
+          <a target="_blank" href="https://bojonegorokab.go.id/berita/4283/bumi-atas-angin-juga-ramai-dikunjungi-wisatawan" class="news-btn w-100">Baca Berita</a>
+        </div>
+        <span class="magical-element leaf" style="top:10px; left:20px;">🍃</span>
+        <span class="magical-element bird" style="top:50px; right:15px;">🐦</span>
+        <span class="magical-element cloud" style="bottom:20px; left:40px;">☁️</span>
+      </div>
+    </div>
+
+    <!-- BERITA 2: biru -->
+    <div class="col-md-4">
+      <div class="news-card neon-blue">
+        <div class="news-img-container">
+          <img src="megahnya-masjid-an-nahdla-bojonegoro-3_169.jpeg" alt="Masjid An Nahdla">
+        </div>
+        <div class="news-content">
+          <h5 class="news-title">Serba-Serbi Masjid An Nahdla Bojonegorot</h5>
+          <p>Perpaduan arsitektur modern dan nuansa spiritual yang menenangkan, menjadikannya sebagai salah satu wisata religi yang tak pernah gagal menghipnotis setiap pengunjung yang datang mampir</p>
+          <a target="_blank" href="https://www.detik.com/jatim/wisata/d-8065961/serba-serbi-masjid-an-nahdla-bojonegoro" class="news-btn w-100">Baca Berita</a>
+        </div>
+        <span class="magical-element leaf" style="top:15px; left:10px;">🍃</span>
+        <span class="magical-element bird" style="top:60px; right:25px;">🐦</span>
+        <span class="magical-element cloud" style="bottom:10px; left:30px;">☁️</span>
+      </div>
+    </div>
+
+    <!-- BERITA 3: hijau -->
+    <div class="col-md-4">
+      <div class="news-card neon-green">
+        <div class="news-img-container">
+          <img src="growgoland berita.webp" alt="Growgoland Bojonegoro">
+        </div>
+        <div class="news-content">
+          <h5 class="news-title">Wisata Growgoland Masih Eksis, Berencana Menata Warung-Warung agar Tampak Rapi</h5>
+          <p>Salah satu desa wisata yang masih eksis ialah Wisata Growgoland Waterfun. Wisata yang dibuka sejak 2015 itu mampu terus mengembangkan dan menjaga agar para pengunjung tidak bosan datang ke Growgoland..</p>
+          <a target="_blank" href="https://radarbojonegoro.jawapos.com/weekend/715009312/wisata-growgoland-masih-eksis-berencana-menata-warung-warung-agar-tampak-rapi" class="news-btn w-100">Baca Berita</a>
+        </div>
+        <span class="magical-element leaf" style="top:5px; left:30px;">🍃</span>
+        <span class="magical-element bird" style="top:40px; right:20px;">🐦</span>
+        <span class="magical-element cloud" style="bottom:15px; left:20px;">☁️</span>
+      </div>
+    </div>
+
+    <!-- BERITA 4: ungu -->
+    <div class="col-md-4">
+      <div class="news-card neon-purple">
+        <div class="news-img-container">
+          <img src="berita kebun belimbing1.jpg" alt="Kebun Belimbing">
+        </div>
+        <div class="news-content">
+          <h5 class="news-title">Agrowisata Kebun Belimbing Ngringinrejo: Berawal dari Kebun Perorangan Menjadi Destinasi Wisata</h5>
+          <p>Terletak di Desa Ngringinrejo, Kecamatan Kalitidu, Kabupaten Bojonegoro, Agrowisata Kebun Belimbing telah berkembang dari sekadar kebun milik perorangan menjadi salah satu destinasi agrowisata unggulan di Jawa Timur</p>
+          <a target="_blank" href="https://radarbojonegoro.jawapos.com/life-style/715033555/agrowisata-kebun-belimbing-ngringinrejo-berawal-dari-kebun-perorangan-menjadi-destinasi-wisata" class="news-btn w-100">Baca Berita</a>
+        </div>
+        <span class="magical-element leaf" style="top:5px; left:15px;">🍃</span>
+        <span class="magical-element bird" style="top:50px; right:30px;">🐦</span>
+        <span class="magical-element cloud" style="bottom:10px; left:25px;">☁️</span>
+      </div>
+    </div>
+
+    <!-- BERITA 5: oranye -->
+    <div class="col-md-4">
+      <div class="news-card neon-orange">
+        <div class="news-img-container">
+          <img src="berita bendungan gerak.webp" alt="Bendungan Gerak">
+        </div>
+        <div class="news-content">
+          <h5 class="news-title">Keindahan Bendungan Gerak di Bojonegoro, Destinasi Wisata Romantis yang Memikat Hati bagi Pengunjungnya</h5>
+          <p>Bendungan Gerak Bojonegoro adalah sebuah persembahan alam yang memikat, terletak di tengah sungai Bengawan Solo, menjadi salah satu destinasi wisata yang paling menarik di daerah tersebut.
+
+Menyuguhkan panorama alam yang memesona, Bendungan Gerak Bojonegoro menarik banyak wisatawan, baik dari dalam maupun luar kota, yang ingin menyaksikan keindahan alam yang luar biasa.</p>
+          <a target="_blank" href="https://www.gemasulawesi.com/id/kupas-tuntas/24944/keindahan-bendungan-gerak-di-bojonegoro-destinasi-wisata-romantis-yang-memikat-hati-bagi-pengunjungnya" class="news-btn w-100">Baca Berita</a>
+        </div>
+        <span class="magical-element leaf" style="top:10px; left:25px;">🍃</span>
+        <span class="magical-element bird" style="top:45px; right:10px;">🐦</span>
+        <span class="magical-element cloud" style="bottom:20px; left:35px;">☁️</span>
+      </div>
+    </div>
+
+    <!-- BERITA 6: pink -->
+    <div class="col-md-4">
+      <div class="news-card neon-pink">
+        <div class="news-img-container">
+          <img src="berita wonocolo.jpeg" alt="Wonocolo Bojonegoro">
+        </div>
+        <div class="news-content">
+          <h5 class="news-title">Mengintip Desa Wonocolo, Tambang Minyak Texas ala Indonesias</h5>
+          <p>Sejak resmi dibuka oleh Pemerintah Kabupaten (Pemkab) Bojonegoro sebagai Pusat Wisata Migas pertama di Indonesia, Desa Wonocolo menjadi lokasi yang diminati wisatawan baik dalam negeri maupun mancanegara</p>
+          <a target="_blank" href="https://www.liputan6.com/bisnis/read/3593334/mengintip-desa-wonocolo-tambang-minyak-texas-ala-indonesia" class="news-btn w-100">Baca Berita</a>
+        </div>
+        <span class="magical-element leaf" style="top:5px; left:20px;">🍃</span>
+        <span class="magical-element bird" style="top:60px; right:15px;">🐦</span>
+        <span class="magical-element cloud" style="bottom:15px; left:30px;">☁️</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+    
+    <!-- KONTAK & KOMENTAR FUTURISTIK SUPER HIDUP -->
+<section id="kontak-komentar" style="padding: 60px 20px; background: linear-gradient(135deg, #89f7fe, #66a6ff); position: relative; overflow: hidden;">
+  <!-- PARTIKEL TERANG -->
+  <canvas id="particle-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:0;"></canvas>
+
+  <div class="container" style="position: relative; z-index: 1;">
+    <h2 class="futuristic-title">Kontak & Komentar</h2>
+
+    <div class="flex-wrapper">
+      <!-- KOLOM KONTAK -->
+      <div class="contact-info neon-box interactive-box">
+        <h3>Hubungi Kami</h3>
+        <p><strong>Alamat:</strong> Jl. Raya Bojonegoro No. 123, Bojonegoro</p>
+        <p><strong>Telepon:</strong> +62 812 3456 7890</p>
+        <p><strong>Email:</strong> info@wisatabojonegoro.com</p>
+      </div>
+
+      <!-- KOLOM KOMENTAR -->
+      <div class="comment-form neon-box interactive-box">
+        <h3>Tinggalkan Komentar</h3>
+        <form>
+          <input type="text" name="name" placeholder="Nama" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <textarea name="message" placeholder="Komentar Anda..." rows="5" required></textarea>
+          <button type="submit">Kirim</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* FLEX & BOX */
+.flex-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.neon-box {
+  flex: 1 1 350px;
+  padding: 35px;
+  border-radius: 25px;
+  background: linear-gradient(145deg, #66a6ff, #89f7fe, #f0f8ff, #66a6ff);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite, neonBorder 3s linear infinite;
+  box-shadow: 0 0 20px rgba(0,255,255,0.5), 0 0 40px rgba(0,102,255,0.4);
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 15px #0ff;
+  border: 2px solid transparent;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  perspective: 1000px;
+}
+
+.interactive-box {
+  transform-style: preserve-3d;
+  will-change: transform;
+  animation: floatRotate 8s ease-in-out infinite alternate;
+}
+
+.neon-box:hover {
+  box-shadow: 0 0 35px rgba(0,255,255,0.8), 0 0 60px rgba(0,102,255,0.6);
+}
+
+.neon-box h3 {
+  margin-bottom: 25px;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px #0ff, 0 0 20px #66f;
+}
+
+/* INPUT & BUTTON */
+.comment-form input,
+.comment-form textarea {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 15px;
+  font-size: 16px;
+  background: rgba(255,255,255,0.25);
+  color: #fff;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.comment-form input::placeholder,
+.comment-form textarea::placeholder {
+  color: #ccc;
+}
+
+.comment-form input:focus,
+.comment-form textarea:focus {
+  outline: none;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0,255,255,0.6);
+}
+
+.comment-form button {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #89f7fe, #66a6ff, #a1c4fd);
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  text-shadow: 0 0 5px #fff, 0 0 15px #0ff;
+  transition: transform 0.3s ease, background 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 0 20px rgba(0,255,255,0.3), 0 0 40px rgba(0,102,255,0.2);
+}
+
+.comment-form button:hover {
+  background: linear-gradient(135deg, #66a6ff, #a1c4fd, #89f7fe);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 0 40px rgba(0,255,255,0.6), 0 0 80px rgba(0,102,255,0.5);
+}
+
+/* FLOAT & ROTATE */
+@keyframes floatRotate {
+  0% { transform: translateY(0px) rotateY(0deg) rotateX(0deg); }
+  25% { transform: translateY(-10px) rotateY(5deg) rotateX(3deg); }
+  50% { transform: translateY(-20px) rotateY(10deg) rotateX(-3deg); }
+  75% { transform: translateY(-10px) rotateY(5deg) rotateX(3deg); }
+  100% { transform: translateY(0px) rotateY(0deg) rotateX(0deg); }
+}
+
+/* GRADIENT & BORDER */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes neonBorder {
+  0%,100% { border-color: #0ff; }
+  25% { border-color: #66f; }
+  50% { border-color: #0ff; }
+  75% { border-color: #66f; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .flex-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>
+
+<script>
+// PARTIKEL TERANG
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const particles = [];
+const particleCount = 150;
+for(let i=0;i<particleCount;i++){
+  particles.push({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    size: Math.random()*3+1,
+    speedX: (Math.random()-0.5)*0.6,
+    speedY: (Math.random()-0.5)*0.6,
+    color: `rgba(${Math.floor(Math.random()*100+155)},${Math.floor(Math.random()*100+155)},255,${Math.random()})`
+  });
+}
+
+function animateParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let i=0;i<particles.length;i++){
+    let p = particles[i];
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+    ctx.fillStyle = p.color;
+    ctx.fill();
+    p.x += p.speedX;
+    p.y += p.speedY;
+    if(p.x <0) p.x = canvas.width;
+    if(p.x > canvas.width) p.x = 0;
+    if(p.y <0) p.y = canvas.height;
+    if(p.y > canvas.height) p.y =0;
+  }
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+// ROTASI MOUSE GABUNG FLOAT
+const boxes = document.querySelectorAll('.interactive-box');
+document.addEventListener('mousemove', e=>{
+  const x = e.clientX;
+  const y = e.clientY;
+  boxes.forEach(box=>{
+    const rect = box.getBoundingClientRect();
+    const boxX = rect.left + rect.width/2;
+    const boxY = rect.top + rect.height/2;
+    const rotateY = (x - boxX)/30;
+    const rotateX = -(y - boxY)/30;
+    // Gabungkan dengan animasi floatRotate
+    box.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+});
+</script>
